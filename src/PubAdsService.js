@@ -31,7 +31,8 @@ export default class PubAdsService extends Service {
       videoContentId: null,
       videoCmsId: null,
       safeFrameConfig: null,
-      tagForChildDirectedTreatment: null
+      tagForChildDirectedTreatment: null,
+      restrictDataProcessing: false,
     };
     this._correlator = Math.random();
   }
@@ -436,6 +437,15 @@ export default class PubAdsService extends Service {
   setVideoContent(videoContentId, videoCmsId) {
     this._options.videoContentId = videoContentId;
     this._options.videoCmsId = videoCmsId;
+  }
+
+  /**
+   * Sets the user's privacy settings, per CCPA.
+   *
+   * @param {boolean} restrictDataProcessing Whether to restrict the user's data processing.
+   */
+  setPrivacySettings({ restrictDataProcessing }) {
+    this._options.restrictDataProcessing = restrictDataProcessing;
   }
 
   /**
